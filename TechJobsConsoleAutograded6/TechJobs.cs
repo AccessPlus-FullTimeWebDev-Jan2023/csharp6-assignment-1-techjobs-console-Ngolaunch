@@ -139,16 +139,17 @@ namespace TechJobsConsoleAutograded6
             for (int i = 0; i < someJobs.Count; i++)
 
             {
+                Console.WriteLine(Environment.NewLine + "*****");
                 foreach (KeyValuePair<string, string> job in someJobs[i])
                     
                 {
-                    
+
                     Console.WriteLine($"{job.Key}: {job.Value}");
                     
 
                 }
                 
-                Console.WriteLine($"{Environment.NewLine}***** {Environment.NewLine}");
+                Console.WriteLine($"*****{Environment.NewLine}");
 
 
             }
