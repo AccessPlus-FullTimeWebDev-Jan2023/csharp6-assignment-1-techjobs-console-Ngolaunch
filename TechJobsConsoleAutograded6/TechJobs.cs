@@ -146,7 +146,7 @@ namespace TechJobsConsoleAutograded6
             for (int i = 0; i < someJobs.Count; i++)
 
             {
-                Console.WriteLine("*****");
+                Console.WriteLine("*****"); // can use Environment.Newline
                 foreach (KeyValuePair<string, string> job in someJobs[i])
                     
                 {
