@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data.Common;
 using System.Text;
 
 namespace TechJobsConsoleAutograded6
@@ -28,7 +29,7 @@ namespace TechJobsConsoleAutograded6
             {
                 string aValue = job[column];
 
-                if (!values.Contains(aValue))
+                if (!values.Contains(aValue.ToLower()))
                 {
                     values.Add(aValue);
                 }
@@ -47,8 +48,27 @@ namespace TechJobsConsoleAutograded6
             // load data, if not already loaded
             LoadData();
 
-            return null;
+            List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
+
+            foreach (Dictionary<string, string> job in AllJobs)
+            {
+                foreach(KeyValuePair<string, string> record in job) 
+            
+                {
+                    //TODO: Make search case-insensitive
+                    if (record.Value.ToLower().Contains(value.ToLower()))
+                    {
+                        jobs.Add(job);
+                        break;
+                    }
+                }
+                             
+            }
+
+            return jobs;
         }
+
+
 
         /**
          * Returns results of search the jobs data by key/value, using
@@ -70,7 +90,7 @@ namespace TechJobsConsoleAutograded6
 
 
                 //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+                if (aValue.ToLower().Contains(value.ToLower()))
                 {
                     jobs.Add(row);
                 }
