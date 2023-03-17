@@ -29,7 +29,7 @@ namespace TechJobsConsoleAutograded6
             {
                 string aValue = job[column];
 
-                if (!values.Contains(aValue))
+                if (!values.Contains(aValue.ToLower()))
                 {
                     values.Add(aValue);
                 }
@@ -50,23 +50,25 @@ namespace TechJobsConsoleAutograded6
 
             List<Dictionary<string, string>> jobs = new List<Dictionary<string, string>>();
 
-            foreach (Dictionary<string, string> row in AllJobs)
+            foreach (Dictionary<string, string> job in AllJobs)
             {
-                string aValue = row[column];
-
-
-                //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+                foreach(KeyValuePair<string, string> record in job) 
+            
                 {
-                    jobs.Add(row);
+                    //TODO: Make search case-insensitive
+                    if (record.Value.ToLower().Contains(value.ToLower()))
+                    {
+                        jobs.Add(job);
+                        break;
+                    }
                 }
+                             
             }
 
-            return null;
+            return jobs;
         }
 
-            
-        }
+
 
         /**
          * Returns results of search the jobs data by key/value, using
@@ -88,7 +90,7 @@ namespace TechJobsConsoleAutograded6
 
 
                 //TODO: Make search case-insensitive
-                if (aValue.Contains(value))
+                if (aValue.ToLower().Contains(value.ToLower()))
                 {
                     jobs.Add(row);
                 }
